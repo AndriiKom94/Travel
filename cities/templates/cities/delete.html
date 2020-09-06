@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %} Додати місто {% endblock %}
+
+{% block content %}
+
+<h1 class="display-4">Видалити місто</h1>
+<div class="row mx-auto">
+    <div class="col-md-4">
+        <form method="post">{% csrf_token %}
+            <p>Видалити '{{ object.name }}'?</p>
+        <input type="submit" value="Так, видалити" class="btn btn-light">
+        </form>
+        <a href="{% url 'cities:home' %}">
+            <button type="button" class="btn btn-light">Назад до списку</button>
+        </a>
+    </div>
+</div>
+
+{% endblock content %}
