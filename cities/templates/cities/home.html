@@ -3,22 +3,38 @@
 {% block title %} Список міст {% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1>Список міст</h1>
-    <div class="row">
-        <div class="col">
-            {% for object in objects_list %}
-            <p>
-                <a href="{%url 'cities:detail' pk=object.pk%}">
-                    {{object.name}}
-                </a>
-            </p>
-            {% endfor %}
-        </div>
+<h1 class="display-4 text-center my-4">Міста</h1>
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <table class="table table-striped">
+        <tbody>
+        {% for object in objects_list %}
+        <tr>
+        <td>
+            <a href="{% url 'cities:detail' pk=object.pk %}">{{object.name}}</a>
+        </td>
+        <td>
+            <a href="{% url 'cities:update' pk=object.pk %}">
+            <button type="button" class="btn btn-primary btn-sm">Редагувати</button>
+            </a>
+        </td>
+        <td>
+            <a href="{% url 'cities:delete' pk=object.pk %}">
+            <button type="button" class="btn btn-danger btn-sm">Видалити</button>
+            </a>
+        </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        </table>
     </div>
 </div>
-<form action="" method="post"> {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="Зберегти">
-</form>
+<div class="row">
+    <div class="col-md-6">
+        <a href="{% url 'cities:add' %}">
+        <button type="button" class="btn btn-info btn-sm">Додати нове місто</button>
+        </a>
+    </div>
+
+</div>
 {% endblock content %}
