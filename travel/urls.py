@@ -16,16 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.shortcuts import render
 from django.urls import path, include
+from routes.views import home, find_routes
 
-
-def home_view(request):
-    name = 'Bob'
-    return render(request, 'home.html', context={'name': name})
+#def home_view(request):
+#   name = 'Bob'
+#    return render(request, 'home.html', context={'name': name})
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('cities/', include(('cities.urls', 'cities'))),
     path('trains/', include(('trains.urls', 'trains'))),
-    path('home/', home_view, name= 'home'),
+    path('home/', home, name= 'home'),
+    path('find/', find_routes, name='find_routes')
 ]
